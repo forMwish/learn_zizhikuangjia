@@ -1,4 +1,6 @@
 from aa import *
+import numpy as np
+
 
 A = Square()
 B = Exp()
