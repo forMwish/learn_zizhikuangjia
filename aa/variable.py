@@ -30,7 +30,14 @@ class Variable:
             if not isinstance(gxs, tuple):
                 gxs = (gxs, )
             for x, gx in zip(xs, gxs):
-                x.grad = gx
+                if x.grad == None:
+                    x.grad = gx
+                else:
+                    x.grad = x.grad + gx # 注意不能使用 x.grad += gx; 因为这样会导致在已有的 x.grad 对象上进行加法；而这个对象是上次的 gx(加法的 gx 未拷贝) 
 
                 if x.creator is not None:
                     funcs.append(x.creator)
+
+    # 清楚上次计算的 grad ，避免和下次的叠加
+    def cleargrad(self):
+        self.grad = None
