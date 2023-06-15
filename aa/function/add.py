@@ -1,12 +1,9 @@
 from .function import Function
 import numpy as np
 
-def add(xs):
-    return Add()(xs)
+def add(x0, x1):
+    return Add()(x0, x1)
 
 class Add(Function):
-    def forward(self, xs):
-        out = np.zeros_like(xs[0])
-        for x in xs:
-            out += x
-        return [out]
+    def forward(self, x0, x1):
+        return x0 + x1

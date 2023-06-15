@@ -18,8 +18,7 @@ import numpy as np
 
 x0 = Variable(0.1)
 x1 = Variable(1)
-x2 = Variable(1.2)
 
-y = add([x0, x1, x2])
-print(y[0].data)
-print(type(y[0].data))
+y = add(x0, x1)
+print(y.data)
+print(type(y.data))
