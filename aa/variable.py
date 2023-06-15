@@ -18,9 +18,19 @@ class Variable:
     def backward(self):
         if self.grad == None:
             self.grad = np.ones_like(self.data)
-        func = self.creator
-        while func:
-            x = func.input
-            y = func.output
-            x.grad = func.backward(y.grad)
-            func = x.creator
+
+        funcs = [self.creator]
+        while funcs:
+            func = funcs.pop()
+
+            xs = func.inputs
+            ys = func.outputs
+            gys = [y.grad for y in ys]
+            gxs = func.backward(*gys)
+            if not isinstance(gxs, tuple):
+                gxs = (gxs, )
+            for x, gx in zip(xs, gxs):
+                x.grad = gx
+
+                if x.creator is not None:
+                    funcs.append(x.creator)
