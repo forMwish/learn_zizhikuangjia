@@ -1,2 +1,2 @@
-from .exp import Exp
-from .square import Square
+from .exp import Exp, exp
+from .square import Square, square

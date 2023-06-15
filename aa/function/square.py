@@ -1,6 +1,9 @@
 from .function import Function
 
 
+def square(x):
+    return Square()(x)
+
 class Square(Function):
     def forward(self, x):
         return x**2
