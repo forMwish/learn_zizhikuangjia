@@ -8,10 +8,12 @@ class Function:
             ys = (ys,)
         outputs = [Variable(y) for y in ys]
         
+        self.generation = max([input.generation for input in inputs])
         for output in outputs:
             output.set_creator(self)
         self.inputs = inputs
         self.outputs = outputs
+
 
         return outputs if len(outputs)>1 else outputs[0]
 

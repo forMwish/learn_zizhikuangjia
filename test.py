@@ -2,17 +2,17 @@ from aa import *
 import numpy as np
 
 
-x0 = Variable(0.5)
-x1 = Variable(0.1)
+x = Variable(0.5)
+y0 = square(x)
+y2 = exp(y0)
+y3 = square(y0)
 
-y0 = add(x0, x1)
-y1 = square(y0)
-y2 = exp(y1)
-y3 = square(y2)
+y4 = add(y2, y3)
+
+y4.backward()
+
+print(x.grad)
 
 
-y3.backward()
 
-print(x0.grad)
-print(x1.grad)
 
