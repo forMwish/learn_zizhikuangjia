@@ -17,7 +17,7 @@ class Variable:
         self.creator = func
         self.generation = func.generation + 1
 
-    def backward(self):
+    def backward(self, retain_grad=False):
         if self.grad == None:
             self.grad = np.ones_like(self.data)
 
@@ -48,6 +48,9 @@ class Variable:
 
                 if x.creator is not None:
                     add_func(x.creator)
+            if retain_grad == False:
+                for y in ys:
+                    y().grad = None
 
     # 清楚上次计算的 grad ，避免和下次的叠加
     def cleargrad(self):
