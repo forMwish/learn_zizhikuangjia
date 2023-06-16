@@ -1,17 +1,39 @@
 import numpy as np
 
 class Variable:
-    def __init__(self, x):
-        if x is not None:
-            if np.isscalar(x):
-                x = np.array(x)
-            if not isinstance(x, np.ndarray):
-                raise TypeError(f"{type(x)} is not support")
+    def __init__(self, data, name=None):
+        if data is not None:
+            if np.isscalar(data):
+                data = np.array(data)
+            if not isinstance(data, np.ndarray):
+                raise TypeError(f"{type(data)} is not support")
         
-        self.data = x
+        self.data = data
+        self.name = name
         self.grad = None
         self.creator = None
         self.generation = 0
+
+    def __len__(self):
+        return len(self.data)
+
+    def __repr__(self):
+        if self.data is None:
+            return 'variable(None)'
+        p = str(self.data).replace('\n', '\n' + 9*' ')
+        return f"variable({p})"
+
+    @property
+    def shape(self):
+        return self.data.shape
+
+    @property
+    def size(self):
+        return self.data.size
+
+    @property
+    def dtype(self):
+        return self.data.dtype
 
     def set_creator(self, func):
         self.creator = func
