@@ -2,8 +2,16 @@ import weakref
 from ..variable import Variable
 from ..config import Config
 
+
+def as_variable(obj):
+    if isinstance(obj, Variable):
+        return obj
+    return Variable(obj)
+
 class Function:
     def __call__(self, *inputs):
+        inputs = [as_variable(x) for x in inputs]
+        
         xs = [x.data for x in inputs]
         ys = self.forward(*xs)
         if not isinstance(ys, tuple):

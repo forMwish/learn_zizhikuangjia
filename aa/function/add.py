@@ -1,5 +1,7 @@
 from .function import Function
 import numpy as np
+from ..variable import Variable
+
 
 def add(x0, x1):
     return Add()(x0, x1)
@@ -10,3 +12,5 @@ class Add(Function):
 
     def backward(self, gy):
         return gy, gy
+
+Variable.__add__ = add
