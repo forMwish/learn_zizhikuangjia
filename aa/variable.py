@@ -36,7 +36,7 @@ class Variable:
 
             xs = func.inputs
             ys = func.outputs
-            gys = [y.grad for y in ys]
+            gys = [y().grad for y in ys]
             gxs = func.backward(*gys)
             if not isinstance(gxs, tuple):
                 gxs = (gxs, )
