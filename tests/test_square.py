@@ -1,6 +1,6 @@
 import unittest
 import numpy as np
-from aa import Variable, square, numerical_diff
+from aa.core import Variable, square, numerical_diff
 
 
 class SquareTest(unittest.TestCase):

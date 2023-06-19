@@ -1,6 +1,6 @@
-from .function import Function
+from ..core.function import Function
 import numpy as np
-from ..variable import Variable
+from ..core.variable import Variable
 
 
 def sub(x0, x1):

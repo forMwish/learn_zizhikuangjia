@@ -1,4 +1,3 @@
-from .variable import Variable
-from .function import *
-from .other import *
-from .config import Config
+from . import core
+from . import function
+from . import utils

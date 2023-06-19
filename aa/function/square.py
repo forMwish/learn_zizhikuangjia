@@ -1,4 +1,4 @@
-from .function import Function
+from ..core.function import Function
 
 
 def square(x):

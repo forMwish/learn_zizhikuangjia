@@ -1,7 +1,7 @@
 import weakref
 import numpy as np
-from ..variable import Variable
-from ..config import Config
+from .variable import Variable
+from .config import Config
 
 
 def as_variable(obj):
