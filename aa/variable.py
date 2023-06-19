@@ -1,6 +1,7 @@
 import numpy as np
 
 class Variable:
+    __array_priority__ = 200
     def __init__(self, data, name=None):
         if data is not None:
             if np.isscalar(data):

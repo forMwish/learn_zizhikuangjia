@@ -14,3 +14,4 @@ class Add(Function):
         return gy, gy
 
 Variable.__add__ = add
+Variable.__radd__ = add

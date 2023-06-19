@@ -1,4 +1,5 @@
 import weakref
+import numpy as np
 from ..variable import Variable
 from ..config import Config
 
@@ -6,7 +7,12 @@ from ..config import Config
 def as_variable(obj):
     if isinstance(obj, Variable):
         return obj
-    return Variable(obj)
+    elif np.isscalar(obj): # 针对传入浮点和定点值
+        return Variable(np.array(obj))
+    elif isinstance(obj, np.ndarray):
+        return Variable(obj)
+    else:
+        raise TypeError (f" input type is {type(obj)}")
 
 class Function:
     def __call__(self, *inputs):

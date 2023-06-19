@@ -14,3 +14,4 @@ class Mul(Function):
         return self.inputs[1].data*gy, self.inputs[0].data*gy
 
 Variable.__mul__ = mul
+Variable.__rmul__ = mul
